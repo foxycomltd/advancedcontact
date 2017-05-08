@@ -1,0 +1,74 @@
+<?php
+/**
+ * Foxycom - eCommerce solutions
+ *
+ * Advanced Contact Form
+ *
+ * @author    Foxycom <support@foxycom.com>
+ * @package   Foxycom_AdvancedContact
+ * @copyright Copyright (c) 2017 Foxycom (https://foxycom.com)
+ * @license   https://foxycom.com/license/osl-30
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
+ */
+?>
+<?php /** @var \Foxycom\AdvancedContact\Plugin\ContactForm $block */ ?>
+<?php $_config = $block->getConfig(); ?>
+
+<form class="form contact"
+      action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Write Us') ?></span></legend><br />
+        <div class="field note no-label"><?php /* @escapeNotVerified */ echo __('Jot us a note and we’ll get back to you as quickly as possible.') ?></div>
+        <?php if ($_config->showSubject()) : ?>
+            <div class="field name <?php echo $_config->isSubjectRequired()?'required':'' ?>">
+                <label class="label" for="name"><span><?php /* @escapeNotVerified */ echo __('Subject') ?></span></label>
+                <div class="control">
+                    <?php echo $this->getSubjectSelectHtml() ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if ($_config->showName()) : ?>
+            <div class="field name <?php echo $_config->isNameRequired()?'required':'' ?>">
+                <label class="label" for="name"><span><?php /* @escapeNotVerified */ echo __('Name') ?></span></label>
+                <div class="control">
+                    <input name="name" id="name" title="<?php /* @escapeNotVerified */ echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('name') ?: $this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" <?php echo $_config->isNameRequired()?'data-validate="{required:true}"':'' ?>/>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="field email required">
+            <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+            <div class="control">
+                <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('email') ?: $this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+        <?php if ($_config->showPhone()) : ?>
+        <div class="field telephone <?php echo $_config->isPhoneRequired()?'required':'' ?>">
+            <label class="label" for="telephone"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
+            <div class="control">
+                <input name="telephone" id="telephone" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('telephone')) ?>" class="input-text" <?php echo $_config->isPhoneRequired()?'data-validate="{required:true}"':'' ?> type="text" />
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="field comment required">
+            <label class="label" for="comment"><span><?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?></span></label>
+            <div class="control">
+                <textarea name="comment" id="comment" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"><?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('comment')) ?></textarea>
+            </div>
+        </div>
+        <?php echo $block->getChildHtml('form.additional.info'); ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>" class="action submit primary">
+                <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+</form>

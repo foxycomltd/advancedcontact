@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Foxycom - eCommerce solutions
+ *
+ * Advanced Contact Form
+ *
+ * @author    Foxycom <support@foxycom.com>
+ * @package   Foxycom_AdvancedContact
+ * @copyright Copyright (c) 2017 Foxycom (https://foxycom.com)
+ * @license   https://foxycom.com/license/osl-30
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <contact>
+            <contact>
+                <thank_you_message><![CDATA[Thanks for contacting us with your comments and questions. We'll respond to you very soon.]]></thank_you_message>
+            </contact>
+            <fields>
+                <show_subject>1</show_subject>
+                <subject_required>0</subject_required>
+                <subjects></subjects>
+                <show_name>1</show_name>
+                <name_required>1</name_required>
+                <show_phone>1</show_phone>
+                <phone_required>0</phone_required>
+            </fields>
+            <email>
+                <email_template>advancedcontact_email_template</email_template>
+            </email>
+        </contact>
+    </default>
+</config>
